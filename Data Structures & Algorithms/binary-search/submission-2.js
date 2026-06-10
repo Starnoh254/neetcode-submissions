@@ -1,0 +1,47 @@
+class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number}
+     */
+    // search(nums, target) {
+    //     let l = 0;
+    //     let r = nums.length - 1;
+
+    //     while (l <= r) {
+    //         let mid = Math.floor(l + (r - l) / 2)
+
+    //         if(nums[mid] === target) {
+    //             return mid;
+    //         }
+    //         else if (nums[mid] > target) {
+    //             r = mid - 1;
+    //         }
+    //         else {
+    //             l = mid + 1;
+    //         }
+    //     }
+
+    //     return -1;
+    // }
+
+    search(nums, target) {
+        return this.binary_search(0 , nums.length - 1, nums , target)
+    }
+
+    binary_search(l,r,nums,target) {
+        if(l > r) return -1;
+
+        let mid = l + Math.floor((r - l) / 2);
+        if(nums[mid] === target) {
+            return mid;
+        }
+        else{
+            return nums[mid] > target ? 
+            this.binary_search(l, mid - 1, nums , target) :
+            this.binary_search(mid + 1 , r , nums , target)
+        }
+    }
+
+
+}
